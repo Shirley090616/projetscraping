@@ -19,3 +19,6 @@ def fetch_crypto_prices
   
     crypto_data
   end
+  def scrap_crypto
+    fetch_crypto_prices
+  end
