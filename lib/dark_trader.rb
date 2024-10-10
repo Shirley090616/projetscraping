@@ -6,6 +6,8 @@ def fetch_crypto_prices
     response = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(response.body)
   
+    puts response.body
+    
     crypto_data = []
     parsed_page.css('.currency-name-container').each do |name_element| # selectionne les elements html + each itere s/chaque element selectionne
       name = name_element.text.strip
