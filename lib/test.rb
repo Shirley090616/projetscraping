@@ -1,4 +1,3 @@
-require "rspec"
 require 'nokogiri' #utilise pour le parsing HTML et extraction données
 require 'httparty' #utilise pour faire les requetes http + obtenir les rep.
 
