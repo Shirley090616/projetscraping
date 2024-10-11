@@ -20,11 +20,11 @@ end
 def fetch_all_townhall_emails
   emails = []
   get_townhall_urls.each do |url|
-    email = get_townhall_email(url)
-    emails << { url.split('/').last => email }  #utilise le nom de la ville comme clé
+    email = get_townhall_email(url) #recup email
+    emails << { url.split('/').last => email }  
   end
   emails
 end
 
-#teste la récupération des emails
+#test récup emails
 puts fetch_all_townhall_emails
