@@ -6,7 +6,7 @@ def fetch_crypto_prices
     url = 'https://coinmarketcap.com/'
     response = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(response.body)
-  
+
     puts response.body
     
     crypto_data = []
@@ -19,6 +19,5 @@ def fetch_crypto_prices
   
     crypto_data
   end
-  def scrap_crypto
-    fetch_crypto_prices
-  end
+  
+  fetch_crypto_prices

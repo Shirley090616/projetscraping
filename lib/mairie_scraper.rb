@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'httparty'
-require 'json'
 require 'dotenv'
 require 'pry'
 
@@ -32,6 +31,7 @@ def fetch_all_townhall_emails
   end
   emails
 end
+puts fetch_all_townhall_emails
 
 # Test manuel (décommentez pour tester)
 # puts fetch_all_townhall_emails
