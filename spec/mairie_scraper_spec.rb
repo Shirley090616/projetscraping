@@ -1,9 +1,16 @@
 require 'nokogiri'
 require 'httparty'
-require 'webmock/rspec'
-require_relative '../townhall'  # Remplacez 'townhall' par le nom de votre fichier
+require 'json'
+require 'dotenv'
+require 'rspec'
+require 'pry'
+require_relative '../mairie_scraper'
 
-RSpec.describe 'Townhall Scraper' do
+RSpec.describe 'Mairie Scraper' do
+  before do
+    Dotenv.load  # Charge les variables d'environnement
+  end
+
   describe '#get_townhall_email' do
     it 'récupère l\'email de la mairie à partir de son URL' do
       # Simulation d'une page HTML avec un email
@@ -17,7 +24,7 @@ RSpec.describe 'Townhall Scraper' do
 
   describe '#get_townhall_urls' do
     it 'récupère une liste d\'URLs des mairies du Val-d\'Oise' do
-      # Simulation d'une page HTML avec des liens vers des mairies
+      # Simulation d'une page HTML avec des liens
       stub_request(:get, "http://annuaire-des-mairies.com/val-d-oise")
         .to_return(body: '<a href="./95/vaureal.html">Vaureal</a>', status: 200)
 
@@ -29,11 +36,9 @@ RSpec.describe 'Townhall Scraper' do
 
   describe '#fetch_all_townhall_emails' do
     it 'récupère un tableau de hashes avec les noms des mairies et leurs emails' do
-      # Simulation de la page contenant les URLs des mairies
       stub_request(:get, "http://annuaire-des-mairies.com/val-d-oise")
         .to_return(body: '<a href="./95/vaureal.html">Vaureal</a>', status: 200)
 
-      # Simulation de la page de la mairie avec un email
       stub_request(:get, "http://annuaire-des-mairies.com/95/vaureal.html")
         .to_return(body: '<a href="mailto:mairie@vaureal.fr">mairie@vaureal.fr</a>', status: 200)
 
